@@ -1,0 +1,8 @@
+:root {
+  --background: #070c10;
+  --text: #eaeff3;
+  --primary: #95bae0;
+  --secondary: #1b558e;
+  --tertiary: hsl(210, 68%, 33%, 30%);
+  --accent: #308de9;
+}
