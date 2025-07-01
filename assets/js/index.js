@@ -25,15 +25,15 @@ function playRound(humanChoice, computerChoice) {
   const playerScoreDisplay = document.getElementById("player-score");
   const computerScoreDisplay = document.getElementById("computer-score");
   const currentRoundDisplay = document.getElementById("round-number");
+  
+  // Check limits for scores
+  if (playerScore === 5 || computerScore === 5) {
+    resetGame();
+  }
 
   // Show current round
   currentRound++;
   currentRoundDisplay.textContent = `Round: ${currentRound}`;
-
-  // Reset game if current round exceeds 5
-  if (currentRound > 5) {
-    resetGame();
-  }
 
   // Display human choice
   switch (humanChoice) {
@@ -81,15 +81,11 @@ function playRound(humanChoice, computerChoice) {
     computerScoreDisplay.textContent = computerScore;
   }
 
-  // Check for game over
-  if (currentRound === 5) {
-    if (playerScore === computerScore) {
-      resultDisplay.textContent = "What a game! It's a tie.";
-    } else if (playerScore > computerScore) {
-      resultDisplay.textContent = "Congratulations! You won the game";
-    } else {
-      resultDisplay.textContent = "Game Over! You lost the game";
-    }
+  if (playerScore === 5) {
+    resultDisplay.textContent = "Congratulations! You won the game";
+  } else if (computerScore === 5) {
+    resultDisplay.textContent = "Game Over! You lost the game";
+
   }
 }
 
@@ -97,15 +93,19 @@ function playRound(humanChoice, computerChoice) {
 function resetGame() {
   playerScore = 0;
   computerScore = 0;
-  currentRound = 1;
+  currentRound = 0;
 
   document.getElementById("player-score").textContent = playerScore;
   document.getElementById("computer-score").textContent = computerScore;
-  document.getElementById("round-number").textContent = `Round: ${currentRound}`;
+  document.getElementById(
+    "round-number"
+  ).textContent = `Round: ${currentRound}`;
 
   // Reset choices display
   document.getElementById("human-choice").className = "fa-solid fa-question";
   document.getElementById("computer-choice").className = "fa-solid fa-question";
+  document.getElementById("human-choice").style.color = "white";
+  document.getElementById("computer-choice").style.color = "white";
   document.getElementById("result").textContent = "";
 }
 
